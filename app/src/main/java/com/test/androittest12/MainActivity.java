@@ -126,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
     protected void fillData () {
         courses.add(new Course("Java", 1300, 6));
         courses.add(new Course("Swift", 1500, 5));
-        courses.add(new Course("iOS", 1350, 3));
+        courses.add(new Course("iOS", 1350, 5));
         courses.add(new Course("Android", 1400, 7));
-        courses.add(new Course("Database", 1000, 1));
+        courses.add(new Course("Database", 1000, 4));
 
         courseChoices.add(new CourseChoices("Graduated", 1));
         courseChoices.add(new CourseChoices("Ungraduated", 2));
