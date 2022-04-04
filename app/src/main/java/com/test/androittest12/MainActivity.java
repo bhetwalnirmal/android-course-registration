@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     Spinner spCourseChoices, spCoursesMenu;
     Button addCourse;
     TextView tvTotalFee, tvTotalHours;
+    CheckBox cbAccomodation, cbMedical;
     double totalFee;
     int totalHours;
 
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         addCourse = (Button) findViewById(R.id.btnAddCourse);
         tvTotalHours = (TextView) findViewById(R.id.tvTotalHours);
         tvTotalFee = (TextView) findViewById(R.id.tvTotalFees);
+        cbAccomodation = (CheckBox) findViewById(R.id.checkbox_accomodation);
+        cbMedical = (CheckBox) findViewById(R.id.checkbox_medical_insurance);
 
         // initializing the course choice spinner
         ArrayAdapter<String> courseChoiceAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, coursesChoiceString);
@@ -86,6 +90,28 @@ public class MainActivity extends AppCompatActivity {
                 updateTotal();
             }
         });
+
+        cbAccomodation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbAccomodation.isChecked()) {
+                    cbAccomodation.setChecked(true);
+                } else {
+                    cbAccomodation.setChecked(false);
+                }
+            }
+        });
+
+        cbMedical.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbMedical.isChecked()) {
+                    cbMedical.setChecked(true);
+                } else {
+                    cbMedical.setChecked(false);
+                }
+            }
+        });
     }
 
     protected void fillData () {
@@ -118,13 +144,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void updateTotal () {
-        double totalFee = 0;
-        double totalHours = 0;
+        double fee = 0;
+        int hours = 0;
 
         for (Course myCourse : myCourses) {
-            totalFee += myCourse.getFee();
-            totalHours += myCourse.getHours();
+            fee += myCourse.getFee();
+            hours += myCourse.getHours();
         }
+
+        totalHours = hours;
+        totalFee = fee;
 
         tvTotalFee.setText("$ " + totalFee);
         tvTotalHours.setText("" + totalHours + " Hours");
