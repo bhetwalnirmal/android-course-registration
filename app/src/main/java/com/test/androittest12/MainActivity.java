@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean isValid = checkCourseHours(courseChoice, course.getHours());
 
                 if (!isValid) {
-                    Toast.makeText(MainActivity.this, "You cannot select this course.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "You cannot add this course as it exceeds the allowed hours.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -126,9 +126,9 @@ public class MainActivity extends AppCompatActivity {
     protected void fillData () {
         courses.add(new Course("Java", 1300, 6));
         courses.add(new Course("Swift", 1500, 5));
-        courses.add(new Course("iOS", 1350, 5));
+        courses.add(new Course("iOS", 1350, 3));
         courses.add(new Course("Android", 1400, 7));
-        courses.add(new Course("Database", 1000, 4));
+        courses.add(new Course("Database", 1000, 1));
 
         courseChoices.add(new CourseChoices("Graduated", 1));
         courseChoices.add(new CourseChoices("Ungraduated", 2));
@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
         tvTotalHours.setText("" + totalHours + " Hours");
     }
 
+    // check if the course hours does not exceed the total allowed hours
     protected boolean checkCourseHours (String courseChoice, int newHours) {
         CourseChoices myChoice = null;
         int allowedHours = 0;
@@ -199,6 +200,6 @@ public class MainActivity extends AppCompatActivity {
             totalHours += myCourse.getHours();
         }
 
-        return allowedHours > (totalHours + newHours) ? true : false;
+        return allowedHours >= (totalHours + newHours) ? true : false;
     }
 }
