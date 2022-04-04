@@ -75,10 +75,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                boolean isValid = checkCourseHours(courseChoice);
+                boolean isValid = checkCourseHours(courseChoice, course.getHours());
 
                 if (!isValid) {
                     Toast.makeText(MainActivity.this, "You cannot select this course.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 if (!isAlreadySelected) {
@@ -96,9 +97,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (cbAccomodation.isChecked()) {
                     cbAccomodation.setChecked(true);
+                    totalFee += 1000;
                 } else {
                     cbAccomodation.setChecked(false);
+                    totalFee -= 1000;
                 }
+
+                updateTotal();
             }
         });
 
@@ -107,9 +112,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (cbMedical.isChecked()) {
                     cbMedical.setChecked(true);
+                    totalFee += 700;
                 } else {
                     cbMedical.setChecked(false);
+                    totalFee -= 700;
                 }
+
+                updateTotal();
             }
         });
     }
@@ -155,11 +164,19 @@ public class MainActivity extends AppCompatActivity {
         totalHours = hours;
         totalFee = fee;
 
+        if(cbAccomodation.isChecked()) {
+            totalFee += 1000;
+        }
+
+        if (cbMedical.isChecked()) {
+            totalFee += 700;
+        }
+
         tvTotalFee.setText("$ " + totalFee);
         tvTotalHours.setText("" + totalHours + " Hours");
     }
 
-    protected boolean checkCourseHours (String courseChoice) {
+    protected boolean checkCourseHours (String courseChoice, int newHours) {
         CourseChoices myChoice = null;
         int allowedHours = 0;
 
@@ -182,6 +199,6 @@ public class MainActivity extends AppCompatActivity {
             totalHours += myCourse.getHours();
         }
 
-        return allowedHours > totalHours ? true : false;
+        return allowedHours > (totalHours + newHours) ? true : false;
     }
 }
