@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     // layout variables
     Spinner spCourseChoices, spCoursesMenu;
     Button addCourse;
-    TextView tvTotalFee, tvTotalHours;
+    TextView tvTotalFee, tvTotalHours, tvCourseFee, tvCourseHours;
     CheckBox cbAccomodation, cbMedical;
     double totalFee;
     int totalHours;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         tvTotalFee = (TextView) findViewById(R.id.tvTotalFees);
         cbAccomodation = (CheckBox) findViewById(R.id.checkbox_accomodation);
         cbMedical = (CheckBox) findViewById(R.id.checkbox_medical_insurance);
+        tvCourseFee = (TextView) findViewById(R.id.tvCourseFee);
+        tvCourseHours = (TextView) findViewById(R.id.tvCourseHours);
 
         // initializing the course choice spinner
         ArrayAdapter<String> courseChoiceAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, coursesChoiceString);
@@ -120,6 +123,24 @@ public class MainActivity extends AppCompatActivity {
 
                 updateTotal();
             }
+        });
+
+        spCoursesMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+                Course course = courses.get(position);
+
+                tvCourseFee.setText("$ " + course.getFee());
+                tvCourseHours.setText(course.getHours() + " Hours");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+                return;
+            }
+
         });
     }
 
