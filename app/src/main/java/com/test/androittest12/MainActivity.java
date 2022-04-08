@@ -2,6 +2,7 @@ package com.test.androittest12;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     // array to hold course list
     ArrayList<Course> courses = new ArrayList<>();
     // array to hold my course list
-    ArrayList<Course> myCourses = new ArrayList<>();
+    public static ArrayList<Course> myCourses = new ArrayList<>();
     // array to hold course choices
     ArrayList<CourseChoices> courseChoices = new ArrayList<>();
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     // layout variables
     Spinner spCourseChoices, spCoursesMenu;
-    Button addCourse;
+    Button addCourse, viewSelectedCourse;
     TextView tvTotalFee, tvTotalHours, tvCourseFee, tvCourseHours;
     CheckBox cbAccomodation, cbMedical;
     double totalFee;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         cbMedical = (CheckBox) findViewById(R.id.checkbox_medical_insurance);
         tvCourseFee = (TextView) findViewById(R.id.tvCourseFee);
         tvCourseHours = (TextView) findViewById(R.id.tvCourseHours);
+        viewSelectedCourse = (Button) findViewById(R.id.btnViewSelectedCourse);
 
         // initializing the course choice spinner
         ArrayAdapter<String> courseChoiceAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, coursesChoiceString);
@@ -92,6 +94,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 updateTotal();
+            }
+        });
+
+        viewSelectedCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ViewSelectedCourseActivity.class);
+                intent.putExtra("selectedCourses", myCourses);
+                startActivity(intent);
             }
         });
 

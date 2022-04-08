@@ -3,7 +3,9 @@ package com.test.androittest12.models;
 // type = 1 for Graduated
 // type = 2 for Undergraduated
 
-public class CourseChoices {
+import java.io.Serializable;
+
+public class CourseChoices implements Serializable {
     private String name;
     private int type;
 

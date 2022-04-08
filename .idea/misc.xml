@@ -5,6 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/activity_view_details.xml" value="0.10989583333333333" />
+        <entry key="app/src/main/res/layout/activity_view_selected_course.xml" value="0.2868972778320313" />
+        <entry key="app/src/main/res/layout/selected_course_row.xml" value="0.45730489095052085" />
       </map>
     </option>
   </component>

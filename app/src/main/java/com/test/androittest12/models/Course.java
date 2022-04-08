@@ -1,6 +1,8 @@
 package com.test.androittest12.models;
 
-public class Course {
+import java.io.Serializable;
+
+public class Course implements Serializable {
     private String name;
     private double fee;
     private int hours;
