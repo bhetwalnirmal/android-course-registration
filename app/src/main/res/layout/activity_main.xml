@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_margin="10dp"
-        >
+            >
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,34 +104,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:weightSum="1"
-            >
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1"
                 >
-
-                <TextView
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Course Hours"
-                    android:gravity="left"
-                    android:textSize="17dp"
-                    android:layout_weight="0.5"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    >
 
-                    />
-                <TextView
-                    android:id="@+id/tvCourseHours"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="6 hours"
-                    android:gravity="right"
-                    android:textSize="17dp"
-                    android:layout_weight="0.5"
-                    />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Course Hours"
+                        android:gravity="left"
+                        android:textSize="17dp"
+                        android:layout_weight="0.5"
+
+                        />
+                    <TextView
+                        android:id="@+id/tvCourseHours"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6 hours"
+                        android:gravity="right"
+                        android:textSize="17dp"
+                        android:layout_weight="0.5"
+                        />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
             <Space
                 android:minHeight="20dp"
@@ -250,4 +253,5 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:text="View Selected Courses" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
